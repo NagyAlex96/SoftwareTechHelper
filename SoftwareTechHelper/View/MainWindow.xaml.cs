@@ -25,6 +25,7 @@ namespace SoftwareTechHelper
         {
             InitializeComponent();
         }
+
         private void MainPage_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             if (e.ChangedButton == MouseButton.Left)

@@ -27,8 +27,12 @@
             <Style TargetType="Path">
                 <Setter Property="Stroke" Value="Black"/>
                 <Setter Property="StrokeThickness" Value="2"/>
-                <Setter Property="Fill" Value="Wheat"/> 
+                <Setter Property="Fill" Value="Wheat"/>
             </Style>
+            
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="/Assest/Localization/Hungarian.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Window.Resources>
 
