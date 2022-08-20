@@ -8,6 +8,17 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Page Remove="Assest\Localization\Hungarian.xaml" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="Assest\Localization\Hungarian.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Expression.Blend.Sdk" Version="1.0.2" />
     <PackageReference Include="Extended.Wpf.Toolkit" Version="4.4.0" />
     <PackageReference Include="MaterialDesignColors" Version="2.0.6" />
