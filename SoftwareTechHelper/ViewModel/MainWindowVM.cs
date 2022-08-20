@@ -18,21 +18,25 @@ namespace SoftwareTechHelper.ViewModel
         //TODO resize törlése
         public MainWindowModel MainWindowModel { get; set; }
         public LanguageModel LanguageModel { get; set; }
-        
+        public LanguageLogic LanguageLogic { get; set; }
 
         public MainWindowVM()
         {
             this.MainWindowModel = new MainWindowModel();
             this.LanguageModel = new LanguageModel();
+            this.LanguageLogic = new LanguageLogic();
+            this.LanguageModel.Dictionary = LanguageLogic.SetupLanguage("Hungarian");
 
             MaximalizeCommand = new RelayCommand(() => Maximalize());
+            CloseWindowCommand = new RelayCommand<Window>(CloseWindow);
+
         }
 
         #region RelayCommands
         public RelayCommand<Window> CloseWindowCommand { get; private set; }
         private void CloseWindow(Window window)
         {
-            if (MessageBox.Show(LanguageModel.Dictionary["closeProgramQuestion"] as string, "", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            if (MessageBox.Show(LanguageModel.Dictionary["closeProgram"] as string, "", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
             {
                 //TODO: saving?
                 window.Close();
@@ -52,16 +56,6 @@ namespace SoftwareTechHelper.ViewModel
                 (MainWindowModel.CurWindowState == WindowState.Normal ? WindowState.Maximized :
                 WindowState.Normal);
         }
-
-        public RelayCommand ResizeCommand { get; private set; }
-        private void Resize()
-        {
-            MainWindowModel.Resizing =
-                (MainWindowModel.Resizing == ResizeMode.CanResizeWithGrip ?
-                ResizeMode.NoResize :
-                ResizeMode.CanResizeWithGrip);
-        }
-
         #endregion    
 
     }

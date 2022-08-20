@@ -45,21 +45,5 @@ namespace SoftwareTechHelper.Model
                 RaisePropertyChanged(() => this.CurWindowState);
             }
         }
-
-        private ResizeMode resizing;
-        public ResizeMode Resizing
-        {
-            get
-            {
-                return resizing;
-            }
-            set
-            {
-                resizing = value;
-                RaisePropertyChanged(() => this.Resizing);
-            }
-        }
-
-
     }
 }
