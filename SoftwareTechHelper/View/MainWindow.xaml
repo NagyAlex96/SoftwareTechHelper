@@ -25,9 +25,9 @@
     <Window.Resources>
         <ResourceDictionary>
             <Style TargetType="Path">
-                <Setter Property="Stroke" Value="Red"/>
+                <Setter Property="Stroke" Value="Black"/>
                 <Setter Property="StrokeThickness" Value="2"/>
-
+                <Setter Property="Fill" Value="Wheat"/> 
             </Style>
         </ResourceDictionary>
     </Window.Resources>
@@ -116,16 +116,7 @@
 
                 <!-- Place of Design -->
                 <Grid Background="{x:Null}" Height="600" Width="600" Canvas.Left="340" Canvas.Top="60">
-                    <Rectangle
-                        Width="600"
-                        Height="300"
-                        VerticalAlignment="Center"
-                        HorizontalAlignment="Center"
-                        Stroke="Black"
-                        StrokeThickness="2"
-                        Fill="#5DDDFF">
 
-                    </Rectangle>
 
                     <!-- Left puzzle -->
                     
@@ -145,7 +136,9 @@
                         A 27.63, 27.63 0 1 0 210,277.5
                         L 210,210
                         L 29,210
-                        "/>
+                        ">
+                        
+                    </Path>
 
                     <!-- middle puzzle -->
                     <Path
@@ -165,7 +158,7 @@
 
                         <interAct:Interaction.Triggers>
                             <interAct:EventTrigger EventName="MouseLeftButtonDown" >
-                                <interAct:InvokeCommandAction Command="{Binding ResizeCommand}" CommandParameter="{Binding ElementName=MainPage}"/>
+                                <interAct:InvokeCommandAction Command="{Binding CloseWindowCommand}" CommandParameter="{Binding ElementName=MainPage}"/>
                             </interAct:EventTrigger>
                         </interAct:Interaction.Triggers>
 
@@ -183,7 +176,9 @@
                           A 27.63, 27.63 0 1 1 502.5,390
                           L 570,390
                           L 570,210
-                          "/>
+                          ">
+                        
+                    </Path>
 
                 </Grid>
 

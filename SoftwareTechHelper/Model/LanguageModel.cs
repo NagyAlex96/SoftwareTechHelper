@@ -8,7 +8,7 @@ using System.Windows;
 
 namespace SoftwareTechHelper.Model
 {
-    internal class LanguageModel : ObservableObject
+    class LanguageModel : ObservableObject
     {
         private ResourceDictionary dictionary;
         public ResourceDictionary Dictionary
