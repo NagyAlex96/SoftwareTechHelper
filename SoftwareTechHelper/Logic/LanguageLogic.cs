@@ -9,7 +9,7 @@ using System.Windows;
 
 namespace SoftwareTechHelper.Logic
 {
-    internal class LanguageLogic : ILanguageLogic
+    public class LanguageLogic : ILanguageLogic
     {
         public string Root
         {
@@ -18,11 +18,19 @@ namespace SoftwareTechHelper.Logic
 
         public ResourceDictionary SetupLanguage(string Language)
         {
-            ResourceDictionary dictionary = new ResourceDictionary();
+           ResourceDictionary dictionary = new ResourceDictionary();
 
             dictionary.Source = new Uri(Root + $@"\Assest\Localization\{Language}.xaml", UriKind.RelativeOrAbsolute);
 
             return dictionary;
         }
+
+        //TODO: Compiler Error CS0206
+        //public void SetupLanguage(string Language, ref ResourceDictionary dictionary)
+        //{
+        //    dictionary = new ResourceDictionary();
+
+        //    dictionary.Source = new Uri(Root + $@"\Assest\Localization\{Language}.xaml", UriKind.RelativeOrAbsolute);
+        //}
     }
 }
