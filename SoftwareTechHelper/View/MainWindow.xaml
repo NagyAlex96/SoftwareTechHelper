@@ -8,7 +8,8 @@
         xmlns:local="clr-namespace:SoftwareTechHelper"
         xmlns:vm="clr-namespace:SoftwareTechHelper.ViewModel"
         mc:Ignorable="d"
-        Title="MainWindow" 
+        x:Name="MainPage"
+        Title="MainPage"
         Height="{Binding MainWindowModel.WindowHeight, Mode=TwoWay, FallbackValue=1080}"    
         Width="{Binding MainWindowModel.WindowWidth, Mode=TwoWay, FallbackValue=1920}"
         MinHeight="720" MinWidth="1280"
@@ -72,7 +73,7 @@
 
         <!--  responsive surface  -->
         <Viewbox
-            Visibility="Hidden"
+            Visibility="Visible"
             Grid.Row="1"
             Grid.Column="0"
             Grid.ColumnSpan="2"
@@ -82,9 +83,9 @@
 
             <!-- usable surface -->
             <Frame
-                Visibility="Visible"
-                NavigationUIVisibility="Hidden"
                 x:Name="FrameDisplay"
+                NavigationUIVisibility="Hidden"
+                Visibility="Hidden"
                 Height="720"
                 Width="1280"
                 Background="Wheat">
@@ -114,11 +115,83 @@
                 </Canvas.Background>
 
                 <!-- Place of Design -->
+                <Grid Background="{x:Null}" Height="600" Width="600" Canvas.Left="340" Canvas.Top="60">
+                    <Rectangle
+                        Width="600"
+                        Height="300"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Center"
+                        Stroke="Black"
+                        StrokeThickness="2"
+                        Fill="#5DDDFF">
 
+                    </Rectangle>
+
+                    <!-- Left puzzle -->
+                    
+                    <!-- 
+                    M : Kiindulópont
+                    L : vonal érkezési pontig
+                    A : szegmensgörbe (kövérsége X,Y-ban; RotationAngle; nagyobb, mint 180fok; órajárás szerinti irány; érkezési pont)  
+                    -->
+                    <Path
+                        Data="
+                        M 30,210
+                        L 30, 390
+                        L 97.5,390
+                        A 27.63,27.63 0 1 1 142,390
+                        L 210,390
+                        L 210, 322.5
+                        A 27.63, 27.63 0 1 0 210,277.5
+                        L 210,210
+                        L 29,210
+                        "/>
+
+                    <!-- middle puzzle -->
+                    <Path
+                        Data="
+                        M 210, 210
+                        L 210, 277.5
+                        A 27.63, 27.63 0 1 1 210,322.5
+                        L 210 390
+                        L 277.5, 390
+                        A 27.63,27.63 0 1 0 322.5,390
+                        L 390 390
+                        L 390 322.5
+                        A 27.63, 27.63 0 1 1 390,277.5
+                        L 390, 210
+                        L 209, 210
+                        ">
+
+                        <interAct:Interaction.Triggers>
+                            <interAct:EventTrigger EventName="MouseLeftButtonDown" >
+                                <interAct:InvokeCommandAction Command="{Binding ResizeCommand}" CommandParameter="{Binding ElementName=MainPage}"/>
+                            </interAct:EventTrigger>
+                        </interAct:Interaction.Triggers>
+
+                    </Path>
+
+                    <!-- right puzzle -->
+                    <Path
+                          Data="
+                          M 570,210
+                          L 390,210
+                          L 390, 277.5
+                          A 27.63, 27.63 0 1 0 390,322.5
+                          L 390, 390
+                          L 457.5, 390
+                          A 27.63, 27.63 0 1 1 502.5,390
+                          L 570,390
+                          L 570,210
+                          "/>
+
+                </Grid>
+
+                <!--
                 <Button Width="100" Height="100" Canvas.Left="265" Canvas.Top="310" Command="{Binding CloseWindowCommand}" Content="Bezárás" FontSize="20"/>
 
                 <Button Width="100" Height="100" Canvas.Left="560" Canvas.Top="335" Command="{Binding CloseWindowCommand}" HorizontalAlignment="Left" Content="SZTF1" FontSize="20"/>
-
+                -->
             </Canvas>
 
         </Viewbox>
