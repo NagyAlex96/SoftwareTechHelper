@@ -1,0 +1,68 @@
+﻿using GalaSoft.MvvmLight;
+using GalaSoft.MvvmLight.Command;
+using SoftwareTechHelper.Logic;
+using SoftwareTechHelper.Model;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Reflection;
+using System.Text;
+using System.Threading.Tasks;
+using System.Windows;
+
+namespace SoftwareTechHelper.ViewModel
+{
+    class MainWindowVM : ViewModelBase
+    {
+        //TODO resize törlése
+        public MainWindowModel MainWindowModel { get; set; }
+        public LanguageModel LanguageModel { get; set; }
+        
+
+        public MainWindowVM()
+        {
+            this.MainWindowModel = new MainWindowModel();
+            this.LanguageModel = new LanguageModel();
+
+            MaximalizeCommand = new RelayCommand(() => Maximalize());
+        }
+
+        #region RelayCommands
+        public RelayCommand<Window> CloseWindowCommand { get; private set; }
+        private void CloseWindow(Window window)
+        {
+            if (MessageBox.Show(LanguageModel.Dictionary["closeProgramQuestion"] as string, "", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                //TODO: saving?
+                window.Close();
+            }
+        }
+
+        public RelayCommand MinimizeCommand { get; private set; }
+        private void Minimize()
+        {
+            MainWindowModel.CurWindowState = WindowState.Minimized;
+        }
+
+        public RelayCommand MaximalizeCommand { get; private set; }
+        private void Maximalize()
+        {
+            MainWindowModel.CurWindowState =
+                (MainWindowModel.CurWindowState == WindowState.Normal ? WindowState.Maximized :
+                WindowState.Normal);
+        }
+
+        public RelayCommand ResizeCommand { get; private set; }
+        private void Resize()
+        {
+            MainWindowModel.Resizing =
+                (MainWindowModel.Resizing == ResizeMode.CanResizeWithGrip ?
+                ResizeMode.NoResize :
+                ResizeMode.CanResizeWithGrip);
+        }
+
+        #endregion    
+
+    }
+}
