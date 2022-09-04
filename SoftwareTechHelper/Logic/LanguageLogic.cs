@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CommunityToolkit.Mvvm.Messaging;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -11,26 +12,27 @@ namespace SoftwareTechHelper.Logic
 {
     public class LanguageLogic : ILanguageLogic
     {
+        public LanguageLogic()
+        {
+
+        }
+
         public string Root
         {
             get { return Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location); }
         }
 
-        public ResourceDictionary SetupLanguage(string Language)
+        public void SetupLanguage(string Language, ref ResourceDictionary dictionary)
         {
-           ResourceDictionary dictionary = new ResourceDictionary();
-
+            if (dictionary == null)
+            {
+                dictionary = new ResourceDictionary();
+            }
+            else
+            {
+                dictionary.Clear();
+            }
             dictionary.Source = new Uri(Root + $@"\Assest\Localization\{Language}.xaml", UriKind.RelativeOrAbsolute);
-
-            return dictionary;
         }
-
-        //TODO: Compiler Error CS0206
-        //public void SetupLanguage(string Language, ref ResourceDictionary dictionary)
-        //{
-        //    dictionary = new ResourceDictionary();
-
-        //    dictionary.Source = new Uri(Root + $@"\Assest\Localization\{Language}.xaml", UriKind.RelativeOrAbsolute);
-        //}
     }
 }

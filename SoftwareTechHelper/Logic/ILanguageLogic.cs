@@ -1,16 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 
 namespace SoftwareTechHelper.Logic
 {
-    interface ILanguageLogic
+    public interface ILanguageLogic
     {
         string Root { get; }
 
-        ResourceDictionary SetupLanguage(string Language);
+        void SetupLanguage(string Language, ref ResourceDictionary dictionary);
     }
 }
